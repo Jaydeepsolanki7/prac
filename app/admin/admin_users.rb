@@ -22,6 +22,7 @@ ActiveAdmin.register AdminUser do
       f.input :password
       f.input :password_confirmation
     end
+    debugger
     f.actions
   end
 
