@@ -10,5 +10,4 @@ ActiveAdmin.register Post do
   end
 
   filter :title
-  filter :description
 end
