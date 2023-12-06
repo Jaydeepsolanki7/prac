@@ -1,5 +1,6 @@
 ActiveAdmin.register AdminUser do
   permit_params :email, :password, :password_confirmation
+  # link_to "User CSV", admin_users_path( :format => :csv )
 
   index do
     selectable_column
