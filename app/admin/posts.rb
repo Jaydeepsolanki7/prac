@@ -18,7 +18,6 @@ ActiveAdmin.register Post do
     f.actions
   end
 
-
   show do |post|
     attributes_table do
       row :title
@@ -28,6 +27,26 @@ ActiveAdmin.register Post do
     panel "Reviews" do
       table_for post.reviews do
         column :body
+      end
+    end
+  end
+
+  controller do
+    def create
+      super do |format|
+        flash[:notice] = "Post was successfully created." if resource.valid?
+      end
+    end
+
+    def update
+      super do |format|
+        flash[:notice] = "Post was successfully updateddfghsdjf." if resource.valid?
+      end
+    end
+
+    def destroy
+      super do |format|
+        flash[:notice] = "Post was successfully dltd." if resource.valid?
       end
     end
   end
