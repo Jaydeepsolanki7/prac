@@ -40,13 +40,13 @@ ActiveAdmin.register Post do
 
     def update
       super do |format|
-        flash[:notice] = "Post was successfully updateddfghsdjf." if resource.valid?
+        flash[:notice] = "Post was successfully updated by mine." if resource.valid?
       end
     end
 
     def destroy
       super do |format|
-        flash[:notice] = "Post was successfully dltd." if resource.valid?
+        flash[:notice] = "Post was successfully deleted by mine." if resource.valid?
       end
     end
   end
