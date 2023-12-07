@@ -3,6 +3,9 @@ class Post < ApplicationRecord
     ["created_at", "description", "id", "id_value", "title", "updated_at"]
   end
 
+  has_many :reviews
+  accepts_nested_attributes_for :reviews, allow_destroy: true
+
   def self.import_csv(file)
     debugger
     CSV.foreach(file.path, headers: true) do |row|

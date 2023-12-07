@@ -1,5 +1,5 @@
 ActiveAdmin.register Post do
-  permit_params :title, :description
+  permit_params :title, :description, reviews_attributes: [:id, :body, :_destroy]
 
   filter :title
 
@@ -7,8 +7,29 @@ ActiveAdmin.register Post do
     f.inputs do
       f.input :title
       f.input :description
+
+      f.inputs "Reviews" do
+        f.has_many :reviews, heading: false , allow_destroy: true do |c|
+          c.object ||= Review.new
+          c.input :body
+        end
+      end
     end
     f.actions
+  end
+
+
+  show do |post|
+    attributes_table do
+      row :title
+      row :description
+    end
+
+    panel "Reviews" do
+      table_for post.reviews do
+        column :body
+      end
+    end
   end
 
   action_item :import_csv, only: :index do
