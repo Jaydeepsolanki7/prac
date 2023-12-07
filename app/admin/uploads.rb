@@ -12,13 +12,6 @@ ActiveAdmin.register Upload do
     selectable_column
     id_column
     column :title
-    column :file do |upload|
-      if upload.file.attached?
-        link_to 'Download', rails_blob_path(upload.file, disposition: 'attachment')
-      else
-        'No File Attached'
-      end
-    end
     actions
   end
 

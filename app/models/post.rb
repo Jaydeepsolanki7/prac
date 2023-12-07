@@ -4,8 +4,8 @@ class Post < ApplicationRecord
   end
 
   def self.import_csv(file)
+    debugger
     CSV.foreach(file.path, headers: true) do |row|
-      debugger
       Post.create!(title: row['title'], description: row['description'])
     end
   end

@@ -21,6 +21,8 @@ gem 'activeadmin'
 gem 'sassc'
 # 
 gem 'csv'
+# 
+gem "prawn"
 
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
