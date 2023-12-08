@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   
   after_save :perform_after_save
   after_commit :perform_after_commit, on: [:create, :update, :destroy]
+  
   def perform_after_save
     puts "After save callback: #{description} is the description of the post"
   end
@@ -11,7 +12,8 @@ class Post < ApplicationRecord
   def perform_after_commit
     if saved_change_to_attribute?(:description)
       puts "After commit callback: Description was changed to '#{description}'"
-    end  end
+    end  
+  end
   
   def self.import_csv(file)
     debugger
