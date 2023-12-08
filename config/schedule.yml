@@ -1,5 +1,4 @@
-:scheduler:
-  daily_greeting_job:
-    cron: '30 4 * * *' 
-    class: 'DailyGreetingWorker'
-    queue: 'default'
+daily_greeting_job:
+  cron: "11 19 * * *"
+  class: "DailyGreetingWorker"
+  queue: default

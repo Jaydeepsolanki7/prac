@@ -24,9 +24,11 @@ gem 'csv'
 # 
 gem "prawn"
 # 
-gem 'sidekiq'
-gem 'whenever', require: false
+gem "sidekiq", "~> 5.2"
+# 
 
+
+gem "sidekiq-cron"
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails"
@@ -69,6 +71,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem 'whenever', '>= 1.0.0', '< 2.0.0', require: false
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"

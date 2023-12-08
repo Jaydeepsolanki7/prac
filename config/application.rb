@@ -18,17 +18,6 @@ module Prac
 
     config.active_job.queue_adapter = :sidekiq
 
-    require 'sidekiq-scheduler'
-
-    Sidekiq.configure_server do |config|
-      config.on(:startup) do
-        Sidekiq.schedule = {}  # Set an empty hash
-        Sidekiq.schedule = YAML.load_file(Rails.root.join('config', 'schedule.yml'))
-        Sidekiq::Scheduler.reload_schedule!
-      end
-    end
-    
-    
     
     # Configuration for the application, engines, and railties goes here.
     #

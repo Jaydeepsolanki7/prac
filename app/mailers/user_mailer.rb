@@ -4,8 +4,10 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: "Welcome to my app")do |format| format.html { render 'welcome_email' } end
   end
 
-  def daily_greeting(user)
-    @user = user
-    mail(to: @user.email, subject: 'Daily Greeting')do |format| format.html { render 'send_daily_email' } end
+  def morning_greeting_email
+     @users = User.all
+    @users.each do |user|
+      mail(to: user.email, subject: "Good Morning, #{user.email}!")
+    end
   end
 end
