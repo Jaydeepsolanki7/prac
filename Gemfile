@@ -23,6 +23,9 @@ gem 'sassc'
 gem 'csv'
 # 
 gem "prawn"
+# 
+gem 'sidekiq'
+gem 'whenever', require: false
 
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
@@ -79,3 +82,4 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+

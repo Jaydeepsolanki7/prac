@@ -1,0 +1,5 @@
+:scheduler:
+  daily_greeting_job:
+    cron: '30 4 * * *' 
+    class: 'DailyGreetingWorker'
+    queue: 'default'

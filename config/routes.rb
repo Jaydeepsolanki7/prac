@@ -3,4 +3,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root 'homes#index'
   devise_for :users
+
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
 end

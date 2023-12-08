@@ -16,6 +16,20 @@ module Prac
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w(assets tasks))
 
+    config.active_job.queue_adapter = :sidekiq
+
+    require 'sidekiq-scheduler'
+
+    Sidekiq.configure_server do |config|
+      config.on(:startup) do
+        Sidekiq.schedule = {}  # Set an empty hash
+        Sidekiq.schedule = YAML.load_file(Rails.root.join('config', 'schedule.yml'))
+        Sidekiq::Scheduler.reload_schedule!
+      end
+    end
+    
+    
+    
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files
@@ -23,8 +37,8 @@ module Prac
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    config.hosts << "eb60-2405-201-3027-e801-82b8-66f1-23cc-a7bf.ngrok-free.app"
-    config.hosts << "eb60-2405-201-3027-e801-82b8-66f1-23cc-a7bf.ngrok-free.app"
+    config.hosts << "51f8-2405-201-3027-e801-7d9-5663-9c36-1b56.ngrok-free.app"
+
 
   end
 end
