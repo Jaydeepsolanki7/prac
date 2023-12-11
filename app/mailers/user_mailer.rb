@@ -5,9 +5,7 @@ class UserMailer < ApplicationMailer
   end
 
   def morning_greeting_email
-     @users = User.all
-    @users.each do |user|
-      mail(to: user.email, subject: "Good Morning, #{user.email}!")
-    end
+    @user = user
+    mail(to: @user.email, subject: 'How are you feeling today?')
   end
 end
