@@ -1,4 +1,4 @@
 daily_greeting_job:
-  cron: "11 19 * * *"
+  cron: "20 13 * * *"
   class: "DailyGreetingWorker"
   queue: default

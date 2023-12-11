@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   accepts_nested_attributes_for :reviews, allow_destroy: true
   
   after_save :perform_after_save
-  after_commit :perform_after_commit, on: [:create, :update, :destroy]
+  after_commit :perform_after_commit
   
   def perform_after_save
     puts "After save callback: #{description} is the description of the post"
@@ -16,7 +16,6 @@ class Post < ApplicationRecord
   end
   
   def self.import_csv(file)
-    debugger
     CSV.foreach(file.path, headers: true) do |row|
       Post.create!(title: row['title'], description: row['description'])
     end

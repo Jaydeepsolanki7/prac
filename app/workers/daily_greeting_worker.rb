@@ -4,7 +4,7 @@ class DailyGreetingWorker
   def perform
     users = User.all
     users.each do |user|
-      UserMailer.morning_greeting_email.deliver_later
+      UserMailer.morning_greeting_email(user).deliver_later
     end
   end
 end

@@ -1,4 +1,4 @@
-
 every 1.day, at: '11:10 am' do
+  command "echo 'Cron job is running' >> /path/to/log/cron_test.log"
   runner 'MorningGreetingJob.perform_now'
 end

@@ -26,8 +26,8 @@ module Prac
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    config.hosts << "51f8-2405-201-3027-e801-7d9-5663-9c36-1b56.ngrok-free.app"
-
+    config.hosts << "0364-2405-201-3027-e801-1fc6-23d4-8969-650b.ngrok-free.app"
+    config.hosts << "0364-2405-201-3027-e801-1fc6-23d4-8969-650b.ngrok-free.app"
 
   end
 end
