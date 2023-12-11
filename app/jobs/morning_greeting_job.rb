@@ -5,5 +5,6 @@ class MorningGreetingJob < ApplicationJob
     users = User.all
     users.each do |user|
       UserMailer.morning_greeting_email(user).deliver_now
+    end
   end
 end
