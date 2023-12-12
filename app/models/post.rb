@@ -1,7 +1,8 @@
 class Post < ApplicationRecord
   has_many :reviews
   accepts_nested_attributes_for :reviews, allow_destroy: true
-  
+  validates :title, uniqueness: { case_sensitive: false }
+
   after_save :perform_after_save
   after_commit :perform_after_commit
   
