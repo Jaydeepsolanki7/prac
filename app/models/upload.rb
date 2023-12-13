@@ -1,5 +1,6 @@
 class Upload < ApplicationRecord
   has_one_attached :file
+  has_many :tips
   def self.ransackable_attributes(auth_object = nil)
     ["created_at", "file", "id", "id_value", "title", "updated_at"]
   end

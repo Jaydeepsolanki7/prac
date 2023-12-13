@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_12_105114) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_13_073802) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -65,6 +65,28 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_105114) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "amenities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "catalogue_amenities", force: :cascade do |t|
+    t.string "name"
+    t.integer "catalogue_id", null: false
+    t.integer "amenity_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["amenity_id"], name: "index_catalogue_amenities_on_amenity_id"
+    t.index ["catalogue_id"], name: "index_catalogue_amenities_on_catalogue_id"
+  end
+
+  create_table "catalogues", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string "name"
     t.integer "parent_id"
@@ -106,6 +128,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_105114) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tips", force: :cascade do |t|
+    t.string "name"
+    t.integer "upload_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["upload_id"], name: "index_tips_on_upload_id"
+  end
+
   create_table "uploads", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -132,5 +162,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_12_105114) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "catalogue_amenities", "amenities"
+  add_foreign_key "catalogue_amenities", "catalogues"
   add_foreign_key "reviews", "posts"
+  add_foreign_key "tips", "uploads"
 end

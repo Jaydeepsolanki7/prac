@@ -33,6 +33,9 @@ gem 'faker'
 gem "sidekiq-cron"
 # 
 gem 'shoulda-matchers'
+# 
+gem 'active_model_serializers'
+
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails"

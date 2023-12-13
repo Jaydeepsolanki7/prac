@@ -1,5 +1,5 @@
 ActiveAdmin.register Test do
-  permit_params :title
+  permit_params :name
 
   
 end

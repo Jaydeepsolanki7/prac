@@ -43,14 +43,14 @@ ActiveAdmin.register Post do
         flash[:notice] = "Post was successfully updated by mine." if resource.valid?
       end
     end
-
-    def destroy
-      super do |format|
-        flash[:notice] = "Post was successfully deleted by mine." if resource.valid?
-      end
-    end
   end
 
+
+  # member_action :destroy, method: :delete do
+  #   resource.destroy
+  #   redirect_to admin_posts_path, notice: "Post was successfully deleted."
+  # end
+  
   action_item :import_csv, only: :index do
     link_to 'Import CSV', action: :import_csv
   end

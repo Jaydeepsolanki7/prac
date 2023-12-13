@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
   accepts_nested_attributes_for :reviews, allow_destroy: true
   validates :title, uniqueness: { case_sensitive: false }
 
