@@ -1,27 +1,31 @@
 ActiveAdmin.register Post do
-  permit_params :title, :description, reviews_attributes: [:id, :body, :_destroy]
+  skip_before_action :verify_authenticity_token
+  permit_params :title, :description, :post_type, :image, reviews_attributes: [:id, :body, :_destroy]
 
   filter :title
+  form partial: 'admin/posts/form'
 
-  form do |f|
-    f.inputs do
-      f.input :title
-      f.input :description
-
-      f.inputs "Reviews" do
-        f.has_many :reviews, heading: false , allow_destroy: true do |c|
-          c.object ||= Review.new
-          c.input :body
-        end
-      end
-    end
-    f.actions
+  index do
+    selectable_column
+    id_column
+    column :post_type
+    column :title
+    column :description
+    actions
   end
 
   show do |post|
     attributes_table do
+      row :post_type
       row :title
       row :description
+      row :image do |post|
+        if post.image.attached?
+          image_tag url_for(post.image), height: '200'
+        else
+          'No image attached'
+        end
+      end
     end
 
     panel "Reviews" do
@@ -45,12 +49,6 @@ ActiveAdmin.register Post do
     end
   end
 
-
-  # member_action :destroy, method: :delete do
-  #   resource.destroy
-  #   redirect_to admin_posts_path, notice: "Post was successfully deleted."
-  # end
-  
   action_item :import_csv, only: :index do
     link_to 'Import CSV', action: :import_csv
   end

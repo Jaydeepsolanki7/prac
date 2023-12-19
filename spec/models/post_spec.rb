@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
   it { should validate_uniqueness_of(:title).case_insensitive } 
   it { should have_many(:reviews) }
+  it { should validate_presence_of(:post_type) }
 
   describe "validates factory" do
     it "should validates factory" do
@@ -12,11 +13,9 @@ RSpec.describe Post, type: :model do
 
   describe "perform after save" do
     @post = FactoryBot.create(:post)
-    debugger
     it "should work as expected" do
     end
   end
-
 
   it "triggers do_something on save" do
     @post = FactoryBot.create(:post)

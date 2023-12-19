@@ -1,0 +1,32 @@
+<%= semantic_form_for [:admin, resource], remote: true do |f| %>
+    <%= f.inputs 'Post Details' do %>
+      <%= f.input :post_type, as: :select, input_html: { id: 'post_type' } %>
+      <%= f.input :title, input_html: { id: 'post_title' } %>
+      <%= f.input :description %>
+      <%= f.input :image, as: :file %>
+      <%= f.inputs 'Reviews' do %>
+        <%= f.semantic_fields_for :reviews do |c| %>
+          <%= c.input :body %>
+        <% end %>
+      <% end %>
+    <% end %>
+  
+    <%= f.actions %>
+  
+    <script>
+      $(document).ready(function() {
+        $('#post_type').on('change', function() {
+          var postTypeInput = $(this);
+          var errorDiv = postTypeInput.closest('.input').find('.inline-errors');
+  
+          if (postTypeInput.val().trim() !== '') {
+            console.log('Post Type selected. Removing error.');
+            errorDiv.remove();
+          } else {
+            console.log('Post Type not selected. Error remains.');
+          }
+        });
+      });
+    </script>
+  <% end %>
+  
