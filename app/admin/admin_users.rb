@@ -1,6 +1,7 @@
 ActiveAdmin.register AdminUser do
   permit_params :email, :password, :password_confirmation
   # link_to "User CSV", admin_users_path( :format => :csv )
+  menu label: 'Admin Users', url: '/admin/admin_users', priority: 99, after: :email
 
   index do
     selectable_column

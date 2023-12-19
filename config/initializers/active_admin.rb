@@ -16,6 +16,18 @@ ActiveAdmin.setup do |config|
   #   end
   # end
 
+# config/initializers/active_admin.rb
+
+  # config.namespace :admin do |admin|
+  #   admin.build_menu do |menu|
+  #     # ... other menu items
+
+  #     menu.add label: 'Admin Users', url: '/admin/admin_users', after: 'Logout'
+  #   end
+  # end
+
+
+
   
   
   # config.site_title_link = "/"

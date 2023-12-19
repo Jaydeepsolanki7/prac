@@ -15,6 +15,9 @@ end
 ActiveAdmin.setup do |config|
   config.namespace :admin do |admin|
     admin.build_menu do |menu|
+      # menu.add label: 'Admin Users', priority: 99, url: '/admin_users'
+      # menu.add label: 'Admin Users', priority: 99 ,  url: '/admin/admin_users', after: 'Logout'
+
       menu.add label: 'Posts', priority: 1, url: '/admin/posts' do |posts_menu|
         posts_menu.add label: 'Reviews', url: '/admin/reviews'
         posts_menu.add label: "Catalogues", url: '/admin/catalogues'
