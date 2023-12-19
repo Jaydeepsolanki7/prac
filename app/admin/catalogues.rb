@@ -1,4 +1,5 @@
 ActiveAdmin.register Catalogue do
+  menu false
   permit_params :name
 
   filter :name

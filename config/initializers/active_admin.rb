@@ -9,6 +9,15 @@ ActiveAdmin.setup do |config|
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
   #
+  # config.namespace :admin do |admin|
+  #   admin.build_menu do |menu|
+  #     menu.add label: 'Posts', priority: 1
+  #     menu.add label: 'Reviews', priority: 2, parent: 'Posts'
+  #   end
+  # end
+
+  
+  
   # config.site_title_link = "/"
 
   # Set an optional image to be displayed for the header

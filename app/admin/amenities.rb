@@ -1,4 +1,6 @@
 ActiveAdmin.register Amenity do
+  menu false
+
   permit_params :name
 
   filter :name

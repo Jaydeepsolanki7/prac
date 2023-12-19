@@ -11,8 +11,8 @@ class Post < ApplicationRecord
   validates :post_type, presence: true
   validates :image,
             presence: true,
-            content_type: [:gif, :jpg, :jpeg, :png],
-            size: {greater_than: 2.megabytes, message: 'must be greater than 2MB in size' }
+            content_type: [:gif, :jpg, :jpeg, :png]
+            # size: {greater_than: 2.megabytes, message: 'must be greater than 2MB in size' }
 
   after_save :perform_after_save
   after_commit :perform_after_commit

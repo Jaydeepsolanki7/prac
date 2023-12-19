@@ -2,6 +2,8 @@ ActiveAdmin.register Post do
   skip_before_action :verify_authenticity_token
   permit_params :title, :description, :post_type, :image, reviews_attributes: [:id, :body, :_destroy]
 
+  menu priority: -1
+  
   filter :title
   form partial: 'admin/posts/form'
 
@@ -12,6 +14,9 @@ ActiveAdmin.register Post do
     column :title
     column :description
     actions
+    column 'All Reviews' do |post|
+      link_to 'All Reviews', admin_reviews_path(q: { post_id_eq: post.id })
+    end
   end
 
   show do |post|
