@@ -39,6 +39,11 @@ class PostsController < ApplicationController
     end
   end
 
+  def all_catalogues
+    @catalogues = Catalogue.all
+    render json: @catalogues
+  end
+
   private
 
     def post_params

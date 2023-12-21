@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   require 'sidekiq/cron/web'
   mount Sidekiq::Web => '/sidekiq'
   resources :posts
+  get "/all_catalogues", to: "posts#all_catalogues"
 end

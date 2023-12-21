@@ -9,7 +9,6 @@ class User < ApplicationRecord
   
   def after_confirmation
     send_welcome_email
-    # enqueue_daily_email_job
   end
 
   def self.ransackable_attributes(auth_object = nil)

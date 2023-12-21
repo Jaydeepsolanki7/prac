@@ -1,4 +1,5 @@
 ActiveAdmin.register Upload do
+  menu false
   permit_params :title, tips_attributes: [:id, :name, :_destroy]
 
   filter :title

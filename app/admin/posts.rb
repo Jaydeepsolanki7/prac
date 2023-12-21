@@ -1,11 +1,40 @@
 ActiveAdmin.register Post do
   skip_before_action :verify_authenticity_token
-  permit_params :title, :description, :post_type, :image, reviews_attributes: [:id, :body, :_destroy]
-
   menu priority: -1
+  config.clear_action_items!
+
+  action_item :index, only: :index do
+    link_to 'New Post', new_admin_post_path
+  end
   
+  permit_params :title, :description, :post_type, :image, photos: [], reviews_attributes: [:id, :body, :_destroy], email_histories_attributes: [:id, :email, :_destroy]
   filter :title
-  form partial: 'admin/posts/form'
+
+  after_create do |post|
+    Post.transaction do
+      post.save!
+      PostMailer.post_created_notification(post).deliver_later
+    end
+  rescue ActiveRecord::RecordInvalid => e
+    Rails.logger.error("Error saving post: #{e.message}")
+  end
+
+  form do |f|
+    f.inputs "Post Details" do
+      f.input :title
+      f.input :description
+      f.input :post_type, as: :select, collection: Post.post_types.keys, include_blank: false
+      f.input :image, as: :file, label: "Image", hint: 'Should be smaller than 2097152 bytes'
+      f.input :photos, as: :file, input_html: { multiple: true }, label: "Photos", hint: 'Multiple photos can be uploaded'
+
+      f.has_many :reviews, heading: 'Reviews', allow_destroy: true do |r|
+        r.input :body
+      end
+    end
+
+    f.actions
+  end
+  
 
   index do
     selectable_column
@@ -31,6 +60,15 @@ ActiveAdmin.register Post do
           'No image attached'
         end
       end
+      row :photos do |post|
+        if post.photos.attached?
+          post.photos.each do |photo|
+            image_tag url_for(photo), height: "200"
+          end
+        else
+          'No image attached'
+        end
+      end   
     end
 
     panel "Reviews" do

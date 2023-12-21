@@ -42,6 +42,12 @@ RSpec.configure do |config|
     end
   end
 
+  config.before(:each, type: :system) do
+    driven_by :rack_test
+    Capybara.server_host = 'localhost'
+    Capybara.server_port = 3000 # Choose an available port
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
     Rails.root.join('spec/fixtures')

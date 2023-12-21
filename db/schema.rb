@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_14_073302) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_20_074702) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -94,6 +94,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_14_073302) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "email_histories", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_email_histories_on_post_id"
+  end
+
   create_table "employees", force: :cascade do |t|
     t.string "name"
     t.integer "manager_id"
@@ -159,6 +167,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_14_073302) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "catalogue_amenities", "amenities"
   add_foreign_key "catalogue_amenities", "catalogues"
+  add_foreign_key "email_histories", "posts"
   add_foreign_key "reviews", "posts"
   add_foreign_key "tips", "uploads"
 end
